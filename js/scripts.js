@@ -11,8 +11,7 @@ const identify = {
 }
 
 const date = new Date();
-const [month, day]       = [date.getMonth(), date.getDate()];
-console.log(date)
+const [month, day, daynumber] = [date.getMonth(), date.getDate(),date.getDay()];
 let monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 let weakNames= ['Mon','Tus','Wed','Thu','Fri','Sat','Sun'];
 
@@ -21,7 +20,7 @@ const setValues = (res)=>{
     //let temp__text__left = containerControl.children[0].children[2].children[0];
     //let temp__unite__left = containerControl.children[0].children[2].children[1];
     let placeName = containerControl.children[0].children[3].children[1].children[1].children[1].textContent =res.name;
-    let todayDate = containerControl.children[0].children[3].children[1].children[0].children[0].textContent=`${weakNames[day+1]}, ${day} ${monthNames[month]}`;
+    let todayDate = containerControl.children[0].children[3].children[1].children[0].children[0].textContent=`${weakNames[daynumber]}, ${day} ${monthNames[month]}`;
     //let image
     let textTimeView = res.weather[0].main.replace(/\s+/g, '').toLowerCase();
     let timeView = containerControl.children[0].children[3].children[0].textContent=res.weather[0].main;
