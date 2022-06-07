@@ -4,6 +4,7 @@ const menuModal = document.getElementById("bg__modal");
 const openModal = document.getElementById("open__modal");
 const form = document.getElementById("form");
 const containerControl = document.getElementById("container");
+let root = document.documentElement;
 
 const identify = {
     GET:'GET__LOCATION',
@@ -27,7 +28,12 @@ const setValues = (res)=>{
     let imageTime = containerControl.children[0].children[1].children[0].src=`../assets/images/${textTimeView}.png`;
     console.log(textTimeView);
     console.log(res);
+    root.style.setProperty('--var-lenght-humidity', res.main.humidity +'%' );
 }
+
+const addExtraInformation = ( need) =>{
+    console.log(need)
+};
 
 const catchError = (err)=> console.log(err);
 
@@ -40,7 +46,6 @@ form.addEventListener("submit",(e)=>{
     })
 });
 
-
 searchBttnCountry.addEventListener("click",()=>{
     requestLocation(identify.GET);
 });
@@ -49,17 +54,28 @@ const request =(url)=>{
     fetch(url)
         .then(res => res.ok ? Promise.resolve(res) : Promise.reject(res))
         .then(res => res.json())
-        .then(setValues)
+        .catch(catchError)
+}
+
+//`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${key_id}`
+const coordinates = (coords) =>{
+    console.log(coords)
+    
+    fetch((`https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=${apiKEY}`))
+        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(res))
+        .then(res => res.json())
+        .then(catchError)
         .catch(catchError)
 }
 
 const requestLocation = (data)=>{
     if(data===identify.GET){
         const success = (position)=>{
-            request(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKEY}`);
+            coordinates({lat:position.coords.latitude,lon:position.coords.longitude})
         }
+        //request(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKEY}`);
         const error=()=> console.log('Unable to retrieve your location');
-        navigator.geolocation.getCurrentPosition(success,error)
+        navigator.geolocation.getCurrentPosition(success,error);
     }else if(data.SEND===identify.SEND){
         request(`https://api.openweathermap.org/data/2.5/weather?q=${data.place}&appid=${apiKEY}`);
     }

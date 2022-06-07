@@ -18,6 +18,8 @@ body{
     --bg-dark-blue-dark: #100E1D;
     --bg-blue:#3C47E9;
     --var-yellow:#FFEC65;
+
+    --var-lenght-humidity:50%;
 }
 
 .container{
@@ -172,7 +174,7 @@ body{
     top: 0; 
     position: absolute;
     border-radius: 2em;
-    width: 50%;
+    width: var(--var-lenght-humidity);
     padding: .3em 0;
     background-color: var(--var-yellow);
 }
