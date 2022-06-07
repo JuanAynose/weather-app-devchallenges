@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <div id="container" class="container">
+      <div class="content__left">
+        <nav class="nav__time">
+          <div class="nav__buttons">
+            <button id="open__modal" class="search__bttn">Search for places</button>
+            <button id="search__country" class="search__bttn dott">
+              <img src="assets/icons/circle-plus-solid.svg" alt="" class="icon">
+            </button>
+          </div>
+          <div id="bg__modal"  class="modal__search">
+            <div class="modal__bg">
+              <button class="button__close">X</button>
+              <div class="modal__content--nav">
+                <form id="form" class="form">
+                  <div class="input__search">
+                    <img src="assets/icons/magnifying-glass-solid.svg" alt="" class="icon">
+                    <input class="input__city" type="text" name="search__place" placeholder="search location">
+                    <p class="error__search hidden">The country/place doesn't exist</p>
+                  </div>
+                  <input class="bttn__search" type="submit" for="search__place" value="Search">
+                </form>
+              </div>
+              <div class="modal__content--suggestion">
+                <div class="country__sugges">
+                  <p class="country__name">Argentina</p>
+                  <img src="assets/icons/angle-right-solid.svg" alt="" class="icon">
+                </div>
+                <div class="country__sugges">
+                  <p class="country__name">China</p>
+                  <img src="assets/icons/angle-right-solid.svg" alt="" class="icon">
+                </div>
+                <div class="country__sugges">
+                  <p class="country__name">Somalia</p>
+                  <img src="assets/icons/angle-right-solid.svg" alt="" class="icon">
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="img__time">
+          <img src="./assets/images/clouds.png" alt="" class="icon__time">
+        </div>
+        <p class="text__temperature"><span>15</span><span class="text__timeview">°C</span></p>
+        <div class="container__info__time">
+          <p class="text__timeview">Shower</p>
+          <div class="time_view">
+            <p class="text__date">
+              Today <span class="text__date-point">Fri, 5 Jun</span>
+            </p>
+            <p class="text__location">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"  width="20px" height="14px"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#88869D" d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z"/></svg>
+              <span>Helsinki</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="content__right">
+        <div class="container__days">
+          <div class="item__days">
+            <p class="text__date">Tomorrow</p>
+            <div class="item__day--img">
+              <img src="./assets/images/clouds.png" alt="" class="icon__time">
+            </div>
+            <p class="text__date">
+              <span class="temp__max">16 <span>°C</span></span>
+              <span class="temp__min">11<span>°C</span></span>
+            </p>
+          </div>
+          <div class="item__days">
+            <p class="text__date">Tomorrow</p>
+            <div class="item__day--img">
+              <img src="./assets/images/clouds.png" alt="" class="icon__time">
+            </div>
+            <p class="text__date">
+              <span class="temp__max">16 <span>°C</span></span>
+              <span class="temp__min">11<span>°C</span></span>
+            </p>
+          </div>
+          <div class="item__days">
+            <p class="text__date">Tomorrow</p>
+            <div class="item__day--img">
+              <img src="./assets/images/clouds.png" alt="" class="icon__time">
+            </div>
+            <p class="text__date">
+              <span class="temp__max">16 <span>°C</span></span>
+              <span class="temp__min">11<span>°C</span></span>
+            </p>
+          </div>
+          <div class="item__days">
+            <p class="text__date">Tomorrow</p>
+            <div class="item__day--img">
+              <img src="./assets/images/clouds.png" alt="" class="icon__time">
+            </div>
+            <p class="text__date">
+              <span class="temp__max">16 <span>°C</span></span>
+              <span class="temp__min">11<span>°C</span></span>
+            </p>
+          </div>
+          <div class="item__days">
+            <p class="text__date">Tomorrow</p>
+            <div class="item__day--img">
+              <img src="./assets/images/clouds.png" alt="" class="icon__time">
+            </div>
+            <p class="text__date">
+              <span class="temp__max">16 <span>°C</span></span>
+              <span class="temp__min">11<span>°C</span></span>
+            </p>
+          </div>
+        </div>
+        <div class="container__advanced-info">
+          <p class="text__time--spects">Today's Hightlights</p>
+          <div class="advanced--info">
+            <div class="item__advanced">
+              <p class="text__date">Wind status</p>
+              <p class="text__date"><span class="text__temperature">7</span><span class="text__timeview">mph</span></p>
+            <div class="info__bottom">
+              <img src="assets/icons/location-arrow-solid.svg" alt="" class="icon">
+              <p class="text__date">Wind status</p>
+            </div>
+            </div>
+            <div class="item__advanced">
+              <p class="text__date">Humidty</p>
+              <p class="text__date"><span class="text__temperature">84</span>%</p>
+            <div class="var__container">
+              <div class="var__humidity">
+                <div class="values__humidity">
+                  <span class="text__number">0</span>
+                  <span class="text__number">50</span>
+                  <span class="text__number">100</span>
+                </div>
+                <div class="fill__bar"></div>
+                <div class="values__humidity">
+                  <span class="text__number">%</span>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="item__advanced">
+              <p class="text__date">Visibility</p>
+              <p class="text__date"><span class="text__temperature">6,4</span>miles</p>
+            </div>
+            <div class="item__advanced">
+              <p class="text__date">Air Pressure</p>
+              <p class="text__date"><span class="text__temperature">994</span>mb</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+<script src="js/scripts.js"></script>
+</html>
