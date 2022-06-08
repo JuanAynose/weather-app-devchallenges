@@ -14,12 +14,12 @@ const identify = {
 const date = new Date();
 const [month, day, daynumber] = [date.getMonth(), date.getDate(),date.getDay()];
 let monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-let iconNumbers = ['brokenclouds','clearsky','clouds','fewclouds','mist','rain','scatteredclouds','showerrain','snow','thunderstorm'];
+let iconNumbers = ['fewclouds','clearsky','clouds','fewclouds','mist','rain','scatteredclouds','showerrain','snow','thunderstorm'];
 let weakNames= ['Mon','Tus','Wed','Thu','Fri','Sat','Sun'];
 
 console.log(containerControl.children[1].children[0].children)
 const setdays= () =>{
-    let dayCounter=0, dayReset= 0, count=0;
+    let dayCounter=0, count=0;
     for(const daysFiller of containerControl.children[1].children[0].children){
         if(daynumber+count>6){
             count=0
@@ -28,7 +28,7 @@ const setdays= () =>{
             daysFiller.children[0].textContent=`${weakNames[daynumber+count]}, ${day+count} ${monthNames[month]}`;
             count+=1;
         }
-        console.log(daysFiller.children[0])
+        let iconsCards = daysFiller.children[1].children[0].src=`../assets/images/${iconNumbers[Math.floor(Math.random() * 6)]}.png`;
         dayCounter+=1;
     }
     containerControl.children[1].children[0].children[0].children[0].textContent='Tomorrow';
