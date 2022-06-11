@@ -14,6 +14,7 @@ body{
     --grey-dark-lighty: #A09FB1;
     --grey-dark-black: #88869D;
     --grey-dark: #6E707A;
+    --light-blue:#585676;
     --bg-dark-blue-light:#1E213A;
     --bg-dark-blue-dark: #100E1D;
     --bg-blue:#3C47E9;
@@ -99,6 +100,7 @@ body{
 
 /*container right styles uwu*/
 .content__right{
+    position: relative;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -313,6 +315,32 @@ body{
     transform: rotate(170deg);
 }
 
+/*buttons faren/cel converters styles*/
+.unit__converter{
+    position: absolute;
+    top: -3.5em;
+    right: 0;
+}
+
+.buttons__unite{
+    border-radius: 50%;
+    border: none;
+    color: var(--bg-dark-blue-dark);
+    background-color: var(--grey-light);
+    font-size: 1.3rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: .5em;
+}
+
+.buttons__unite.active{
+    color: #fff;
+    background-color: var(--light-blue);
+}
+
 /*hover statements modal*/
 .country__sugges:hover{
     border: 1px solid var(--grey-dark-lighty);
@@ -338,6 +366,10 @@ body{
 
     .container__advanced-info{
         margin: 1.5em;
+    }
+
+    .unit__converter{
+        display: none;
     }
 
 }
