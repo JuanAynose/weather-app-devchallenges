@@ -109,9 +109,7 @@ unitConverter.addEventListener("click",(e)=>{
     for(const daysFiller of containerControl.children[1].children[1].children){
         console.log(daysFiller)
     }
-        
     }else{
-       
         e.target.classList.add("active");
         e.target.previousElementSibling.classList.remove("active")
     }
