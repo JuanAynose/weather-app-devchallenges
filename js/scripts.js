@@ -1,4 +1,10 @@
+import { requestuwu } from "./modules/fetch.js";
 const apiKEY = "c64e9f5ab42d3150162d746b4d7ac4b2";
+
+//console.log(requestuwu(`https://api.openweathermap.org/data/2.5/weather?q=china&appid=${apiKEY}&units=metric`))
+
+
+
 const searchBttnCountry = document.getElementById("search__country");
 const menuModal = document.getElementById("bg__modal");
 const openModal = document.getElementById("open__modal");
@@ -33,25 +39,25 @@ const setdays= () =>{
     containerControl.children[1].children[1].children[0].children[0].textContent='Tomorrow';
 }
 
-const setValues = (res)=>{
-    let temp__text__left = containerControl.children[0].children[2].children[0].textContent=res.main.temp.toString().slice(0,1);
-    //let temp__unite__left = containerControl.children[0].children[2].children[1];
-    let placeName = containerControl.children[0].children[3].children[1].children[1].children[1].textContent =res.name;
-    let todayDate = containerControl.children[0].children[3].children[1].children[0].children[0].textContent=`${weakNames[daynumber]}, ${day} ${monthNames[month]}`;
-    let textTimeView = res.weather[0].main.replace(/\s+/g, '').toLowerCase();
-    let timeView = containerControl.children[0].children[3].children[0].textContent=res.weather[0].main;
-    let imageTime = containerControl.children[0].children[1].children[0].src=`../assets/images/${textTimeView}.png`;
-    let windSpeed = containerControl.children[1].children[2].children[1].children[0].children[1].children[0].textContent=res.wind.speed;
-    let humidityLevels = containerControl.children[1].children[2].children[1].children[1].children[1].children[0].textContent=res.main.humidity; 
-    let milesConverter = Number(res.visibility)*0.00062137;
-    let visibility = containerControl.children[1].children[2].children[1].children[2].children[1].children[0].textContent=milesConverter.toString().slice(0,3);
-    
-    let airPressure = containerControl.children[1].children[2].children[1].children[3].children[1].children[0].textContent=res.main.pressure;
-    root.style.setProperty('--var-lenght-humidity', res.main.humidity +'%' );
-    setdays();
+const setValues = (data)=>{
+    data.then(res =>{
+        let temp__text__left = containerControl.children[0].children[2].children[0].textContent=res.main.temp.toString().slice(0,1);
+        //let temp__unite__left = containerControl.children[0].children[2].children[1];
+        let placeName = containerControl.children[0].children[3].children[1].children[1].children[1].textContent =res.name;
+        let todayDate = containerControl.children[0].children[3].children[1].children[0].children[0].textContent=`${weakNames[daynumber]}, ${day} ${monthNames[month]}`;
+        let textTimeView = res.weather[0].main.replace(/\s+/g, '').toLowerCase();
+        let timeView = containerControl.children[0].children[3].children[0].textContent=res.weather[0].main;
+        let imageTime = containerControl.children[0].children[1].children[0].src=`../assets/images/${textTimeView}.png`;
+        let windSpeed = containerControl.children[1].children[2].children[1].children[0].children[1].children[0].textContent=res.wind.speed;
+        let humidityLevels = containerControl.children[1].children[2].children[1].children[1].children[1].children[0].textContent=res.main.humidity; 
+        let milesConverter = Number(res.visibility)*0.00062137;
+        let visibility = containerControl.children[1].children[2].children[1].children[2].children[1].children[0].textContent=milesConverter.toString().slice(0,3);
+        
+        let airPressure = containerControl.children[1].children[2].children[1].children[3].children[1].children[0].textContent=res.main.pressure;
+        root.style.setProperty('--var-lenght-humidity', res.main.humidity +'%' );
+        setdays();
+    })
 }
-
-const catchError = (err)=> console.log(err);
 
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
@@ -67,23 +73,16 @@ searchBttnCountry.addEventListener("click",()=>{
     requestLocation(identify.GET);
 });
 
-const request =(url)=>{
-    fetch(url)
-        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(res))
-        .then(res => res.json())
-        .then(setValues)
-        .catch(catchError)
-}
 
 const requestLocation = (data)=>{
     if(data===identify.GET){
         const success = (position)=>{
-            request(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKEY}&units=metric`);
+            setValues(requestuwu(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKEY}&units=metric`));
         }
         const error=()=> console.log('Unable to retrieve your location');
         navigator.geolocation.getCurrentPosition(success,error);
     }else if(data.SEND===identify.SEND){
-        request(`https://api.openweathermap.org/data/2.5/weather?q=${data.place}&appid=${apiKEY}&units=metric`);
+        setValues(requestuwu(`https://api.openweathermap.org/data/2.5/weather?q=${data.place}&appid=${apiKEY}&units=metric`));
     }
 }
 
