@@ -95,15 +95,28 @@ modalCountry.addEventListener("click",(e)=>{
     } 
 })
 
+const uniteChanger=(guide)=>{
+    let getNumber, getUnite;
+    let setTypeofConvert;
+    if(guide=='farent') setTypeofConvert;
+    for(const daysFiller of containerControl.children[1].children[1].children){
+        getNumber=[Number(daysFiller.children[2].children[0].children[0].textContent),Number(daysFiller.children[2].children[1].children[0].textContent)];
+        getUnite=daysFiller.children[2].children[0].children[1].textContent='°F';
+        getUnite=daysFiller.children[2].children[1].children[1].textContent='°F';
+        console.log(getNumber)
+        daysFiller.children[2].children[0].children[0].textContent=Math.round((getNumber[0]* 9/5) + 32);
+        daysFiller.children[2].children[1].children[0].textContent=Math.round((getNumber[1]* 9/5) + 32);
+        console.log(daysFiller.children[2].children[1].children)
+    }
+}
+
 unitConverter.addEventListener("click",(e)=>{
     if(e.target.textContent==="°C"){
         e.target.classList.add("active");
         e.target.nextElementSibling.classList.remove("active")
-    for(const daysFiller of containerControl.children[1].children[1].children){
-        console.log(daysFiller)
-    }
     }else{
         e.target.classList.add("active");
         e.target.previousElementSibling.classList.remove("active")
     }
+    uniteChanger()
 })
