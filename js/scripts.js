@@ -1,10 +1,5 @@
 import { requestuwu } from "./modules/fetch.js";
 const apiKEY = "c64e9f5ab42d3150162d746b4d7ac4b2";
-
-//console.log(requestuwu(`https://api.openweathermap.org/data/2.5/weather?q=china&appid=${apiKEY}&units=metric`))
-
-
-
 const searchBttnCountry = document.getElementById("search__country");
 const menuModal = document.getElementById("bg__modal");
 const openModal = document.getElementById("open__modal");
@@ -51,8 +46,7 @@ const setValues = (data)=>{
         let windSpeed = containerControl.children[1].children[2].children[1].children[0].children[1].children[0].textContent=res.wind.speed;
         let humidityLevels = containerControl.children[1].children[2].children[1].children[1].children[1].children[0].textContent=res.main.humidity; 
         let milesConverter = Number(res.visibility)*0.00062137;
-        let visibility = containerControl.children[1].children[2].children[1].children[2].children[1].children[0].textContent=milesConverter.toString().slice(0,3);
-        
+        let visibility = containerControl.children[1].children[2].children[1].children[2].children[1].children[0].textContent=milesConverter.toString().slice(0,3);      
         let airPressure = containerControl.children[1].children[2].children[1].children[3].children[1].children[0].textContent=res.main.pressure;
         root.style.setProperty('--var-lenght-humidity', res.main.humidity +'%' );
         setdays();
