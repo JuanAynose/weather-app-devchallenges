@@ -7,21 +7,33 @@ const form = document.getElementById("form");
 const containerControl = document.getElementById("container");
 const unitConverter = document.getElementById("unit__converter");
 let root = document.documentElement;
+unitConverter.style.display='none';
 
 const identify = {
     GET:'GET__LOCATION',
     SEND:'REQUEST__DATA'
 }
 
+const identifyUnite = {
+    CEL:'CELSIUS',
+    FAREN:'FAHRENTHEIT'
+}
+window.addEventListener("load",()=> requestLocation(identify.GET))
+
 const date = new Date();
 const [month, day, daynumber] = [date.getMonth(), date.getDate(),date.getDay()];
 let monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 let iconNumbers = ['fewclouds','clearsky','clouds','fewclouds','mist','rain','scatteredclouds','showerrain','snow','thunderstorm'];
 let weakNames= ['Sun','Mon','Tus','Wed','Thu','Fri','Sat'];
+const tempMin = [];
+const tempMax = [];
+let tempMain=0;
 
 const setdays= () =>{
     let dayCounter=0, count=0, dayReset=0;
     for(const daysFiller of containerControl.children[1].children[1].children){
+        tempMax.push(daysFiller.children[2].children[0].children[0].textContent);
+        tempMin.push(daysFiller.children[2].children[1].children[0].textContent);
         count+=1;
         dayCounter+=1;
         if(dayCounter+daynumber>6){
@@ -33,11 +45,11 @@ const setdays= () =>{
     }
     containerControl.children[1].children[1].children[0].children[0].textContent='Tomorrow';
 }
-
 const setValues = (data)=>{
+    unitConverter.style.display='block';
     data.then(res =>{
-        let temp__text__left = containerControl.children[0].children[2].children[0].textContent=res.main.temp.toString().slice(0,1);
-        //let temp__unite__left = containerControl.children[0].children[2].children[1];
+        let temp__text__left = containerControl.children[0].children[2].children[0].textContent=res.main.temp.toString().slice(0,2);
+        tempMain=res.main.temp;
         let placeName = containerControl.children[0].children[3].children[1].children[1].children[1].textContent =res.name;
         let todayDate = containerControl.children[0].children[3].children[1].children[0].children[0].textContent=`${weakNames[daynumber]}, ${day} ${monthNames[month]}`;
         let textTimeView = res.weather[0].main.replace(/\s+/g, '').toLowerCase();
@@ -96,27 +108,38 @@ modalCountry.addEventListener("click",(e)=>{
 })
 
 const uniteChanger=(guide)=>{
-    let getNumber, getUnite;
-    let setTypeofConvert;
-    if(guide=='farent') setTypeofConvert;
-    for(const daysFiller of containerControl.children[1].children[1].children){
-        getNumber=[Number(daysFiller.children[2].children[0].children[0].textContent),Number(daysFiller.children[2].children[1].children[0].textContent)];
-        getUnite=daysFiller.children[2].children[0].children[1].textContent='°F';
-        getUnite=daysFiller.children[2].children[1].children[1].textContent='°F';
-        console.log(getNumber)
-        daysFiller.children[2].children[0].children[0].textContent=Math.round((getNumber[0]* 9/5) + 32);
-        daysFiller.children[2].children[1].children[0].textContent=Math.round((getNumber[1]* 9/5) + 32);
-        console.log(daysFiller.children[2].children[1].children)
+    let count=0;
+    if(guide===identifyUnite.CEL){
+        containerControl.children[0].children[2].children[0].textContent=Math.round(tempMain);
+        containerControl.children[0].children[2].children[1].textContent='°C';
+        for(const daysFiller of containerControl.children[1].children[1].children){
+            daysFiller.children[2].children[0].children[1].textContent='°C';
+            daysFiller.children[2].children[1].children[1].textContent='°C';
+            daysFiller.children[2].children[0].children[0].textContent=tempMax[count];
+            daysFiller.children[2].children[1].children[0].textContent=tempMin[count];
+            count+=1;
+        }
+    }else if(guide===identifyUnite.FAREN){
+        containerControl.children[0].children[2].children[0].textContent=Math.round((tempMain*9/5)+32);
+        containerControl.children[0].children[2].children[1].textContent='°F';
+        for(const daysFiller of containerControl.children[1].children[1].children){
+            daysFiller.children[2].children[0].children[1].textContent='°F';
+            daysFiller.children[2].children[1].children[1].textContent='°F';
+            daysFiller.children[2].children[0].children[0].textContent=Math.round((tempMax[count]* 9/5) + 32);
+            daysFiller.children[2].children[1].children[0].textContent=Math.round((tempMin[count]* 9/5) + 32);
+            count+=1;
+        }
     }
 }
 
 unitConverter.addEventListener("click",(e)=>{
     if(e.target.textContent==="°C"){
         e.target.classList.add("active");
+        uniteChanger(identifyUnite.CEL);
         e.target.nextElementSibling.classList.remove("active")
     }else{
         e.target.classList.add("active");
         e.target.previousElementSibling.classList.remove("active")
+        uniteChanger(identifyUnite.FAREN);
     }
-    uniteChanger()
 })
