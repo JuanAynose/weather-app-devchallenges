@@ -34,7 +34,7 @@
                   <input class="bttn__search" type="submit" for="search__place" value="Search">
                 </form>
               </div>
-              <div class="modal__content--suggestion">
+              <div id="modal__country" class="modal__content--suggestion">
                 <div class="country__sugges">
                   <p class="country__name">Argentina</p>
                   <img src="assets/icons/angle-right-solid.svg" alt="" class="icon">
@@ -68,6 +68,10 @@
         </div>
       </div>
       <div class="content__right">
+        <div id="unit__converter" class="unit__converter">
+          <button class="buttons__unite active">°C</button>
+          <button class="buttons__unite">°F</button>
+        </div>
         <div class="container__days">
           <div class="item__days">
             <p class="text__date">Tomorrow</p>
@@ -75,8 +79,8 @@
               <img src="./assets/images/clouds.png" alt="" class="icon__time">
             </div>
             <p class="text__date">
-              <span class="temp__max">16 <span>°C</span></span>
-              <span class="temp__min">11<span>°C</span></span>
+              <span class="temp__max"><span>20</span><span>°C</span></span>
+              <span class="temp__min"><span>11</span><span>°C</span></span>
             </p>
           </div>
           <div class="item__days">
@@ -85,8 +89,8 @@
               <img src="./assets/images/clouds.png" alt="" class="icon__time">
             </div>
             <p class="text__date">
-              <span class="temp__max">16 <span>°C</span></span>
-              <span class="temp__min">11<span>°C</span></span>
+              <span class="temp__max"><span>16</span><span>°C</span></span>
+              <span class="temp__min"><span>5</span><span>°C</span></span>
             </p>
           </div>
           <div class="item__days">
@@ -95,8 +99,8 @@
               <img src="./assets/images/clouds.png" alt="" class="icon__time">
             </div>
             <p class="text__date">
-              <span class="temp__max">16 <span>°C</span></span>
-              <span class="temp__min">11<span>°C</span></span>
+              <span class="temp__max"><span>21</span><span>°C</span></span>
+              <span class="temp__min"><span>3</span><span>°C</span></span>
             </p>
           </div>
           <div class="item__days">
@@ -105,8 +109,8 @@
               <img src="./assets/images/clouds.png" alt="" class="icon__time">
             </div>
             <p class="text__date">
-              <span class="temp__max">16 <span>°C</span></span>
-              <span class="temp__min">11<span>°C</span></span>
+              <span class="temp__max"><span>16</span><span>°C</span></span>
+              <span class="temp__min"><span>10</span><span>°C</span></span>
             </p>
           </div>
           <div class="item__days">
@@ -115,8 +119,8 @@
               <img src="./assets/images/clouds.png" alt="" class="icon__time">
             </div>
             <p class="text__date">
-              <span class="temp__max">16 <span>°C</span></span>
-              <span class="temp__min">11<span>°C</span></span>
+              <span class="temp__max"><span>19</span><span>°C</span></span>
+              <span class="temp__min"><span>12</span><span>°C</span></span>
             </p>
           </div>
         </div>
@@ -162,5 +166,5 @@
     </div>
   </main>
 </body>
-<script src="js/scripts.js"></script>
+<script src="js/scripts.js" type="module"></script>
 </html>
