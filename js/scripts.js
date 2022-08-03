@@ -1,5 +1,5 @@
 import { requestuwu } from "./modules/fetch.js";
-const apiKEY = "c64e9f5ab42d3150162d746b4d7ac4b2";
+const apiKEY = "b8aa5bc08416695fb534f2e3c4245866";
 const searchBttnCountry = document.getElementById("search__country");
 const menuModal = document.getElementById("bg__modal");
 const openModal = document.getElementById("open__modal");
